@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<jib-maven-plugin.version>1.5.1</jib-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -81,11 +82,15 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>0.9.6</version>
+				<version>${jib-maven-plugin.version}</version>
 				<configuration>
+					<!-- uses gcr.io/distroless/java as the base image -->
 					<to>
-						<image>gcr.io/guesbook-264619/guestbook-service</image>
+						<tags>${project.version}</tags>
 					</to>
+					<container>
+						<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+					</container>
 				</configuration>
 			</plugin>
 
