@@ -1,5 +1,7 @@
 steps:
-  - name: gcr.io/cloud-builders/mvn:3.5.0-jdk-8
+  - name: 'gcr.io/cloud-builders/gcloud:latest'
+  - args: ['auth', 'configure-docker']
+  - name: 'gcr.io/cloud-builders/mvn:3.5.0-jdk-8'
     id: build
     args: ['clean', 'install', 'jib:build']
   - name: 'gcr.io/cloud-builders/gke-deploy:stable'
